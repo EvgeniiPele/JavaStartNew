@@ -1,30 +1,23 @@
 package Lesson2;
 
 public class Pow {
-    public static void main(String[] args) {
+   public static void main(String[] args) {
     }
 
-    class Solution {
         public double myPow(double x, int n) {
-
-            if(n < 0){
-                n = -n;
-                x = 1 / x;
-            }
-
-            double pow = 1;
-
-            while(n != 0){
-                if((n % 2) != 0){
-                    pow *= x;
-                }
-
-                x *= x;
-                n = n / 2;
-
-            }
-
-            return pow;
+            return exponentiation(x, n);
         }
-    }
+        public double exponentiation (double base, int pow){
+            if (pow == 0) return 1;
+            if (pow == 1) return base;
+            if (base == 0 || base == 1) return base;
+            if (pow < 0){
+                return 1 / base * exponentiation (1 / base, -(pow + 1));
+            }
+            double calculation = exponentiation (base, pow / 2);
+            double mult = calculation * calculation;
+            if (pow % 2 == 1){
+                mult *= base;
+            } return mult;
+        }
 }
